@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(BullsEyeApp());
-}
+void main() => runApp(BullsEyeApp());
+
 
 class BullsEyeApp extends StatelessWidget {
 
@@ -17,5 +16,32 @@ class BullsEyeApp extends StatelessWidget {
 }
 
 class GamePage extends StatefulWidget {
+  GamePage({Key? key, this.title}) : super(key: key);
+  final String title;
+
+  @override
+  _GamePageState createState() => _GamePageState();
+
+}
+
+class _GamePageState extends State<GamePage> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            const Text(
+              "Hello BullsEye",
+              style: TextStyle(fontWeight: FontWeight.bold, color: Colors.green),
+            ),
+            TextButton(onPressed: () {},
+                child: const Text("Hit Me!", style: TextStyle(color: Colors.blue), ))
+          ],
+        ),
+      ),
+    );
+  }
 
 }
