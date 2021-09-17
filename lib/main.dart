@@ -1,5 +1,6 @@
 import 'package:bull_eye/control.dart';
 import 'package:bull_eye/prompt.dart';
+import 'package:bull_eye/score.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -24,16 +25,13 @@ class BullsEyeApp extends StatelessWidget {
 
 class GamePage extends StatefulWidget {
   GamePage({Key? key, required this.title}) : super(key: key);
-
   final String title;
-
   @override
   _GamePageState createState() => _GamePageState();
 }
 
 class _GamePageState extends State<GamePage> {
   bool _alertIsVisible = false;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,6 +51,7 @@ class _GamePageState extends State<GamePage> {
                   "Hit Me!",
                   style: TextStyle(color: Colors.blue),
                 )),
+            Score(totalScore: 99999, round: 999)
           ],
         ),
       ),
