@@ -56,7 +56,7 @@ class _GamePageState extends State<GamePage> {
                 onPressed: () {
                   _alertIsVisible = true;
                   _showAlert(context, _alertIsVisible, "Awesome!",
-                      "Hello there!", "The slider's value is ${_model.current}.\n" +
+                      "Hello there!", "The slider's value is ${_sliderValue()}.\n" +
                   "You scored ${_pointsForCurrentRound()} points fot this round.");
                 },
                 child: const Text(
@@ -72,13 +72,11 @@ class _GamePageState extends State<GamePage> {
     );
   }
 
+  int _sliderValue() => _model.current;
+
   int _pointsForCurrentRound() {
-    int maximumScore = 100;
-    int sliderValue = _model.current;
-    int difference = _model.target - sliderValue;
-    if (difference < 0) {
-      difference *= -1;
-    }
+    var maximumScore = 100;
+    var difference = (_model.target - _sliderValue()).abs();
     return maximumScore - difference;
   }
 
