@@ -54,7 +54,7 @@ class _GamePageState extends State<GamePage> {
                 onPressed: () {
                   _alertIsVisible = true;
                   _showAlert(context, _alertIsVisible, "Awesome!",
-                      "Hello there!", "This is my first pop-up");
+                      "Hello there!", "The slider's value is ${_model.current}");
                 },
                 child: const Text(
                   "Hit Me!",
