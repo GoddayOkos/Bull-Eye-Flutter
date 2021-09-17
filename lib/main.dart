@@ -1,4 +1,5 @@
 import 'package:bull_eye/control.dart';
+import 'package:bull_eye/gamemodel.dart';
 import 'package:bull_eye/prompt.dart';
 import 'package:bull_eye/score.dart';
 import 'package:flutter/material.dart';
@@ -32,6 +33,14 @@ class GamePage extends StatefulWidget {
 
 class _GamePageState extends State<GamePage> {
   bool _alertIsVisible = false;
+  late GameModel _model;
+
+  @override
+  void initState() {
+    super.initState();
+    _model = GameModel(50);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,8 +48,8 @@ class _GamePageState extends State<GamePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Prompt(targetValue: 100),
-            Control(),
+            Prompt(targetValue: _model.target),
+            Control(model: _model),
             TextButton(
                 onPressed: () {
                   _alertIsVisible = true;
@@ -51,7 +60,9 @@ class _GamePageState extends State<GamePage> {
                   "Hit Me!",
                   style: TextStyle(color: Colors.blue),
                 )),
-            Score(totalScore: 99999, round: 999)
+            Score(
+                totalScore: _model.totalScore,
+                round: _model.round)
           ],
         ),
       ),
