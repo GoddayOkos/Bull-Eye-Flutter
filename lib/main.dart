@@ -86,6 +86,10 @@ class _GamePageState extends State<GamePage> {
         onPressed: () {
           Navigator.of(context).pop();
           state = false;
+          setState(() {
+            _model.totalScore += _pointsForCurrentRound();
+            _model.target = Random().nextInt(100) + 1;
+          });
         },
         child: Text(okText));
 
