@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:bull_eye/control.dart';
 import 'package:bull_eye/gamemodel.dart';
 import 'package:bull_eye/prompt.dart';
@@ -38,7 +40,7 @@ class _GamePageState extends State<GamePage> {
   @override
   void initState() {
     super.initState();
-    _model = GameModel(50);
+    _model = GameModel(Random().nextInt(100) + 1);
   }
 
   @override
