@@ -5,11 +5,13 @@ class Score extends StatelessWidget {
   Score({
     Key? key,
     required this.totalScore,
-    required this.round
+    required this.round,
+    required this.onStartOver
   }) : super(key: key);
 
   final int totalScore;
   final int round;
+  final VoidCallback onStartOver;
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +19,7 @@ class Score extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         TextButton(onPressed: () {
-
+          onStartOver();
         }, child: const Text("Start Over")),
         Padding(
           padding: const EdgeInsets.all(8.0),
