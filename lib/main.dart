@@ -16,7 +16,7 @@ class BullsEyeApp extends StatelessWidget {
 }
 
 class GamePage extends StatefulWidget {
-  GamePage({Key? key, this.title}) : super(key: key);
+  GamePage({this.title = ""});
   final String title;
 
   @override
@@ -25,6 +25,8 @@ class GamePage extends StatefulWidget {
 }
 
 class _GamePageState extends State<GamePage> {
+  bool _alertIsVisible = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,15 +35,36 @@ class _GamePageState extends State<GamePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             const Text(
-              "Hello BullsEye",
+              "Hello to my first flutter app",
               style: TextStyle(fontWeight: FontWeight.bold, color: Colors.green),
             ),
-            TextButton(onPressed: () {},
+            TextButton(onPressed: () {
+              _alertIsVisible = true;
+              _showAlert(context);
+              print("Button pressed!");
+              },
                 child: const Text("Hit Me!", style: TextStyle(color: Colors.blue), ))
           ],
         ),
       ),
     );
+  }
+
+  void _showAlert(BuildContext context) {
+    Widget okButton = TextButton(onPressed: () {
+      Navigator.of(context).pop();
+      _alertIsVisible = false;
+      print("Awesome pressed! $_alertIsVisible");
+    }, child: const Text("Awesome!"));
+
+    showDialog(context: context, builder: (BuildContext context) {
+      return AlertDialog(
+        title: const Text("Hello there!"),
+        content: const Text("This is my first pop-up"),
+        actions: [okButton],
+        elevation: 5,
+      );
+    });
   }
 
 }
