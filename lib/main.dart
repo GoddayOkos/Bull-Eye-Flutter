@@ -26,6 +26,7 @@ class GamePage extends StatefulWidget {
 
 class _GamePageState extends State<GamePage> {
   bool _alertIsVisible = false;
+  bool _knockKnockVisible = false;
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +44,11 @@ class _GamePageState extends State<GamePage> {
               _showAlert(context);
               print("Button pressed!");
               },
-                child: const Text("Hit Me!", style: TextStyle(color: Colors.blue), ))
+                child: const Text("Hit Me!", style: TextStyle(color: Colors.blue), )),
+            TextButton(onPressed: () {
+              _knockKnockVisible = true;
+              _showWhosThere(context);
+            }, child: const Text("Knock, Knock"))
           ],
         ),
       ),
@@ -61,6 +66,22 @@ class _GamePageState extends State<GamePage> {
       return AlertDialog(
         title: const Text("Hello there!"),
         content: const Text("This is my first pop-up"),
+        actions: [okButton],
+        elevation: 5,
+      );
+    });
+  }
+
+  void _showWhosThere(BuildContext context) {
+    Widget okButton = TextButton(onPressed: () {
+      _knockKnockVisible = false;
+      Navigator.of(context).pop();
+    }, child: const Text("Knock Off"));
+
+    showDialog(context: context, builder: (BuildContext context) {
+      return AlertDialog(
+        title: const Text("Who's There?"),
+        content: const Text("Man up and handle your sh*t"),
         actions: [okButton],
         elevation: 5,
       );
