@@ -57,7 +57,7 @@ class _GamePageState extends State<GamePage> {
                   _alertIsVisible = true;
                   _showAlert(context, _alertIsVisible, "Awesome!",
                       "Hello there!", "The slider's value is ${_sliderValue()}.\n" +
-                  "You scored ${_pointsForCurrentRound()} points fot this round.");
+                  "You scored ${_pointsForCurrentRound()} points for this round.");
                 },
                 child: const Text(
                   "Hit Me!",
@@ -89,6 +89,7 @@ class _GamePageState extends State<GamePage> {
           setState(() {
             _model.totalScore += _pointsForCurrentRound();
             _model.target = Random().nextInt(100) + 1;
+            _model.round += 1;
           });
         },
         child: Text(okText));
