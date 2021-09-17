@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 void main() => runApp(BullsEyeApp());
 
 class BullsEyeApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    // Set orientation to landscape only
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.landscapeLeft,
+      DeviceOrientation.landscapeRight
+    ]);
+
     return MaterialApp(
       title: "BullsEye",
       theme: ThemeData(primarySwatch: Colors.blue),
@@ -24,7 +31,6 @@ class GamePage extends StatefulWidget {
 
 class _GamePageState extends State<GamePage> {
   bool _alertIsVisible = false;
-  bool _knockKnockVisible = false;
 
   @override
   Widget build(BuildContext context) {
@@ -49,13 +55,6 @@ class _GamePageState extends State<GamePage> {
                   "Hit Me!",
                   style: TextStyle(color: Colors.blue),
                 )),
-            TextButton(
-                onPressed: () {
-                  _knockKnockVisible = true;
-                  _showAlert(context, _knockKnockVisible, "Knock Off",
-                      "Who's There", "Man up and handle your sh*t");
-                },
-                child: const Text("Knock, Knock"))
           ],
         ),
       ),
