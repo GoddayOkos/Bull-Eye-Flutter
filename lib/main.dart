@@ -55,9 +55,7 @@ class _GamePageState extends State<GamePage> {
             TextButton(
                 onPressed: () {
                   _alertIsVisible = true;
-                  _showAlert(context, _alertIsVisible, "Awesome!",
-                      "Hello there!", "The slider's value is ${_sliderValue()}.\n" +
-                  "You scored ${_pointsForCurrentRound()} points for this round.");
+                  _showAlert(context);
                 },
                 child: const Text(
                   "Hit Me!",
@@ -80,29 +78,46 @@ class _GamePageState extends State<GamePage> {
     return maximumScore - difference;
   }
 
-  void _showAlert(BuildContext context, bool state, String okText, String title,
-      String content) {
+  void _showAlert(BuildContext context) {
     Widget okButton = TextButton(
         onPressed: () {
           Navigator.of(context).pop();
-          state = false;
+          _alertIsVisible = false;
           setState(() {
             _model.totalScore += _pointsForCurrentRound();
             _model.target = Random().nextInt(100) + 1;
             _model.round += 1;
           });
         },
-        child: Text(okText));
+        child: const Text("Awesome!"));
 
     showDialog(
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: Text(title),
-            content: Text(content),
+            title: Text(_alertTitle()),
+            content: Text("The slider's value is ${_sliderValue()}.\n" +
+                "You scored ${_pointsForCurrentRound()} points for this round."),
             actions: [okButton],
             elevation: 5,
           );
         });
+  }
+
+  String _alertTitle() {
+    var difference = (_model.target - _sliderValue()).abs();
+
+    String title;
+    if (difference == 0) {
+      title = "Perfect!";
+    } else if (difference < 5) {
+      title = "You almost had it!";
+    } else if (difference <= 10) {
+      title = "Not bad.";
+    } else {
+      title = "Are you even trying?";
+    }
+
+    return title;
   }
 }
