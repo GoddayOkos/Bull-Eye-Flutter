@@ -1,3 +1,5 @@
+import 'package:bull_eye/control.dart';
+import 'package:bull_eye/prompt.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -21,7 +23,7 @@ class BullsEyeApp extends StatelessWidget {
 }
 
 class GamePage extends StatefulWidget {
-  GamePage({this.title = ""});
+  GamePage({Key? key, required this.title}) : super(key: key);
 
   final String title;
 
@@ -39,17 +41,13 @@ class _GamePageState extends State<GamePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text(
-              "Hello to my first flutter app",
-              style:
-                  TextStyle(fontWeight: FontWeight.bold, color: Colors.green),
-            ),
+            Prompt(targetValue: 100),
+            Control(),
             TextButton(
                 onPressed: () {
                   _alertIsVisible = true;
                   _showAlert(context, _alertIsVisible, "Awesome!",
                       "Hello there!", "This is my first pop-up");
-                  print("Button pressed!");
                 },
                 child: const Text(
                   "Hit Me!",
