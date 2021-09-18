@@ -6,6 +6,7 @@ import 'package:bull_eye/hitmebutton.dart';
 import 'package:bull_eye/prompt.dart';
 import 'package:bull_eye/score.dart';
 import 'package:bull_eye/styledbutton.dart';
+import 'package:bull_eye/textstyle.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -136,9 +137,28 @@ class _GamePageState extends State<GamePage> {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: Text(_alertTitle()),
-            content: Text("The slider's value is ${_sliderValue()}.\n" +
-                "You scored ${_pointsForCurrentRound()} points for this round."),
+            title: Text(
+                _alertTitle(),
+              style: const TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
+            ),
+            content: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Text(
+                    "THE SLIDER'S VALUE IS",
+                  textAlign: TextAlign.center,
+                ),
+                Text(
+                    "${_sliderValue()}",
+                  style: TargetTextStyle.bodyText1(context),
+                  textAlign: TextAlign.center,
+                ),
+                Text(
+                  "\nYou scored ${_pointsForCurrentRound()} points this round.",
+                  textAlign: TextAlign.center,
+                ),
+              ],
+            ),
             actions: [okButton],
             elevation: 5,
           );
