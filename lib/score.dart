@@ -1,3 +1,4 @@
+import 'package:bull_eye/about.dart';
 import 'package:bull_eye/styledbutton.dart';
 import 'package:bull_eye/textstyle.dart';
 import 'package:flutter/cupertino.dart';
@@ -54,7 +55,10 @@ class Score extends StatelessWidget {
           ),
         ),
         StyledButton(onPressed: () {
-
+          Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => AboutPage())
+          );
         }, icon: Icons.info)
       ],
     );
