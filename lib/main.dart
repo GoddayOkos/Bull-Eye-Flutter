@@ -2,8 +2,10 @@ import 'dart:math';
 
 import 'package:bull_eye/control.dart';
 import 'package:bull_eye/gamemodel.dart';
+import 'package:bull_eye/hitmebutton.dart';
 import 'package:bull_eye/prompt.dart';
 import 'package:bull_eye/score.dart';
+import 'package:bull_eye/styledbutton.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -62,21 +64,28 @@ class _GamePageState extends State<GamePage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Prompt(targetValue: _model.target),
+              Padding(
+                padding: const EdgeInsets.only(top: 48.0, bottom: 32.0),
+                child: Prompt(targetValue: _model.target),
+              ),
               Control(model: _model),
-              TextButton(
-                  onPressed: () {
-                    _alertIsVisible = true;
-                    _showAlert(context);
-                  },
-                  child: const Text(
-                    "Hit Me!",
-                    style: TextStyle(color: Colors.blue),
-                  )),
-              Score(
-                  totalScore: _model.totalScore,
-                  round: _model.round,
-                onStartOver: _startNewGame,
+              Padding(
+                padding: const EdgeInsets.only(top: 16.0),
+                child: HitMeButton(
+                    onPressed: () {
+                      _alertIsVisible = true;
+                      _showAlert(context);
+                    },
+                    text: "Hit Me!",
+                    ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Score(
+                    totalScore: _model.totalScore,
+                    round: _model.round,
+                  onStartOver: _startNewGame,
+                ),
               )
             ],
           ),
@@ -111,7 +120,7 @@ class _GamePageState extends State<GamePage> {
   }
 
   void _showAlert(BuildContext context) {
-    Widget okButton = TextButton(
+    Widget okButton = StyledButton(
         onPressed: () {
           Navigator.of(context).pop();
           _alertIsVisible = false;
@@ -121,7 +130,7 @@ class _GamePageState extends State<GamePage> {
             _model.round += 1;
           });
         },
-        child: const Text("Awesome!"));
+        icon: Icons.close);
 
     showDialog(
         context: context,

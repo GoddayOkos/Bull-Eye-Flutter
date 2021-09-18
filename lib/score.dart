@@ -1,3 +1,4 @@
+import 'package:bull_eye/styledbutton.dart';
 import 'package:bull_eye/textstyle.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -19,9 +20,9 @@ class Score extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        TextButton(onPressed: () {
+        StyledButton(onPressed: () {
           onStartOver();
-        }, child: const Text("Start Over")),
+        }, icon: Icons.refresh,),
         Padding(
           padding: const EdgeInsets.only(left: 32.0, right: 32.0),
           child: Column(
@@ -52,9 +53,9 @@ class Score extends StatelessWidget {
             ],
           ),
         ),
-        TextButton(onPressed: () {
+        StyledButton(onPressed: () {
 
-        }, child: const Text("Info"))
+        }, icon: Icons.info)
       ],
     );
   }
