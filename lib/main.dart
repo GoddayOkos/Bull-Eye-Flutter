@@ -10,9 +10,11 @@ import 'package:bull_eye/textstyle.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-void main() => runApp(BullsEyeApp());
+void main() => runApp(const BullsEyeApp());
 
 class BullsEyeApp extends StatelessWidget {
+  const BullsEyeApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     // Set orientation to landscape only
@@ -27,20 +29,19 @@ class BullsEyeApp extends StatelessWidget {
     return MaterialApp(
       title: "BullsEye",
       theme: ThemeData(primarySwatch: Colors.blue),
-      home: GamePage(title: "BullsEye"),
+      home: const GamePage(title: "BullsEye"),
     );
   }
 }
 
 class GamePage extends StatefulWidget {
-  GamePage({Key? key, required this.title}) : super(key: key);
+  const GamePage({Key? key, required this.title}) : super(key: key);
   final String title;
   @override
   _GamePageState createState() => _GamePageState();
 }
 
 class _GamePageState extends State<GamePage> {
-  bool _alertIsVisible = false;
   late GameModel _model;
 
   @override
@@ -74,7 +75,6 @@ class _GamePageState extends State<GamePage> {
                 padding: const EdgeInsets.only(top: 16.0),
                 child: HitMeButton(
                     onPressed: () {
-                      _alertIsVisible = true;
                       _showAlert(context);
                     },
                     text: "HIT ME!",
@@ -124,7 +124,6 @@ class _GamePageState extends State<GamePage> {
     Widget okButton = StyledButton(
         onPressed: () {
           Navigator.of(context).pop();
-          _alertIsVisible = false;
           setState(() {
             _model.totalScore += _pointsForCurrentRound();
             _model.target = _newTargetValue();

@@ -2,7 +2,7 @@ import 'package:bull_eye/textstyle.dart';
 import 'package:flutter/material.dart';
 
 class Prompt extends StatelessWidget {
-  Prompt({required this.targetValue});
+  const Prompt({Key? key, required this.targetValue}) : super(key: key);
   final int targetValue;
 
   @override

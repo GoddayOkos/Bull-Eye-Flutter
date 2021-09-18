@@ -5,7 +5,7 @@ import 'package:bull_eye/sliderthumbimage.dart';
 import 'package:flutter/services.dart';
 
 class Control extends StatefulWidget {
-  Control({Key? key, required this.model}) : super(key: key);
+  const Control({Key? key, required this.model}) : super(key: key);
   final GameModel model;
 
   @override

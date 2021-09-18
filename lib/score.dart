@@ -5,7 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class Score extends StatelessWidget {
-  Score({
+  const Score({
     Key? key,
     required this.totalScore,
     required this.round,
