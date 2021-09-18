@@ -77,7 +77,7 @@ class _GamePageState extends State<GamePage> {
                       _alertIsVisible = true;
                       _showAlert(context);
                     },
-                    text: "Hit Me!",
+                    text: "HIT ME!",
                     ),
               ),
               Padding(
