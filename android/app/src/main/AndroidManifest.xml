@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="dev.decagon.godday.bull_eye">
    <application
-        android:label="bull_eye"
+        android:label="Bullseye"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

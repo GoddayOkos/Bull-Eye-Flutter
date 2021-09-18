@@ -31,11 +31,14 @@ class AboutPage extends StatelessWidget {
                 fontSize: 14.0,
               ),
             ),
-            const Text(
-              "Your goal is to place the slider as close as possible to the target value. The closer your are, the more points you score.\n",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 14.0,
+            const Padding(
+              padding: EdgeInsets.only(left: 10.0, right: 10.0),
+              child: Text(
+                "Your goal is to place the slider as close as possible to the target value. The closer your are, the more points you score.\n",
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 14.0,
+                ),
               ),
             ),
             const Text(
